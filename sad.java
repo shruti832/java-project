@@ -1,60 +1,82 @@
-import java.applet.*;  
-import java.awt.*;
+import java.applet.*; 
+import java.awt.*; 
+import java.awt.Button; 
 import java.awt.event.*; 
+import java.applet.*;
 
-public class sad extends Applet implements ActionListener {
-    int a=0,b=0,c=0,f=0,x=0,y=0;
-    Button u = new Button("Up");
-    Button d = new Button("Down");
-    Button l = new Button("Left");
-    Button r = new Button("Right");
-    
-    public void init() {
-        add(u);
-        u.addActionListener(this);
-        add(d);
-        d.addActionListener(this);
-        add(l);
-        l.addActionListener(this);
-        add(r);
-        r.addActionListener(this);
+
+
+public class sadface extends Applet implements ActionListener
+{
+	int x=120, x1=120, o=150, o1=160, p=220, p1=160, a=180, a1=225;
+
+    public void init()
+    {
+        setLayout(null);
+        Button button1 = new Button("Right");
+        add(button1); 
+        button1.setBounds(100,20,80,30);
+        button1.addActionListener(this);
+
+        Button button2 = new Button("Left");
+        add(button2); 
+        button2.setBounds(10,20,80,30);
+        button2.addActionListener(this);
+
+        Button button3 = new Button("Up");
+        add(button3); 
+        button3.setBounds(10,80,80,30);
+        button3.addActionListener(this);
+
+        Button button4 = new Button("Down");
+        add(button4); 
+        button4.setBounds(100,80,80,30);
+        button4.addActionListener(this);
     }
 
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == u) {
-           y=y-1;
-           a++;
+    public void actionPerformed(ActionEvent ae)
+    {
+        String str = ae.getActionCommand();
+
+        if(str.equals("Right"))
+        {
+            x=x+10;
+            o=o+10;
+            p=p+10;
+            a=a+10;
         }
-        else if (e.getSource() == d) {
-            y=y+1;
-            b++;
+        else if(str.equals("Left"))
+        {
+            x=x-10;
+            o=o-10;
+            p=p-10;
+            a=a-10;
         }
-        else if (e.getSource() == l) {
-            x=x+1;
-            c++;
+        else if(str.equals("Up"))
+        {
+            x1=x1-10;
+            o1=o1-10;
+            p1=p1-10;
+            a1=a1-10;
         }
-        else if (e.getSource() == r) {
-            x=x-1;
-            f++;
+        else if(str.equals("Down"))
+        {
+            x1=x1+10;
+            o1=o1+10;
+            p1=p1+10;
+            a1=a1+10;
         }
+
         repaint();
     }
 
-    public void paint(Graphics g){
-        if(x>=0||y>=0){
-            final int MID = 500;
-            final int TOP = 500;
-            setBackground(Color.cyan);
-            g.setColor (Color.white);
-            g.fillOval (MID-20+x, TOP+y, 70, 70);      // head
-            g.setColor (Color.black);
-            g.fillOval (MID-10+x, TOP+10+y, 15, 15);   // left eye
-            g.fillOval (MID+15+x, TOP+10+y, 15, 15);    // right eye
-            g.drawArc (MID+x, TOP+45+y, 20, 10, -180, -180);   // smile
-        }
+    public void paint(Graphics g)
+    {
+        g.setColor(Color.yellow);
+        g.fillOval(x,x1,150,150);
+        g.setColor(Color.black); 
+        g.drawArc(o,o1,30,10,180,180); 
+        g.drawArc(p,p1,30,10,180,180); 
+        g.drawArc(o+20,o1+30,60,60,0,180); 
     }
-}  
-/* 
-<applet code="sad.class" width="1000" height="1000"> 
-</applet> 
-*/
+}
